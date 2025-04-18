@@ -1,0 +1,76 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMzvTSDNq0ZZ9wP2Dccdc1G",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/aram794/30213-/blob/main/%EC%88%98%ED%96%891_30213%20%EC%95%88%EC%95%84%EB%9E%8C\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "dD4wrEr_XAjP"
+      },
+      "outputs": [],
+      "source": [
+        "# 중금속 수산화물 정보를 저장하는 클래스\n",
+        "class Substance:\n",
+        "    def __init__(self, name, min_pH, max_pH):\n",
+        "        self.name = name\n",
+        "        self.min_pH = min_pH\n",
+        "        self.max_pH = max_pH\n",
+        "\n",
+        "# 용해 여부를 출력하는 함수\n",
+        "def check_solubility(substance_list, pH):\n",
+        "    print(f\"\\npH {pH}에서의 용해 상태\")\n",
+        "    for substance in substance_list:\n",
+        "        if substance.min_pH <= pH <= substance.max_pH:\n",
+        "            print(f\"{substance.name}은(는) 녹습니다.\")\n",
+        "        else:\n",
+        "            print(f\"{substance.name}은(는) 침전됩니다.\")\n",
+        "\n",
+        "# 중금속 수산화물 정보 리스트\n",
+        "substances = [\n",
+        "    Substance(\"탄산칼슘(CaCO₃)\", 6, 10),\n",
+        "    Substance(\"구리(II) 수산화물(Cu(OH)₂)\", 5, 9),\n",
+        "    Substance(\"철(III) 수산화물(Fe(OH)₃)\", 3, 6),\n",
+        "    Substance(\"납(II) 수산화물(Pb(OH)₂)\", 4, 8)\n",
+        "]\n",
+        "\n",
+        "while True:\n",
+        "    user_input = input(\"확인할 pH 값을 입력하세요 (0~14), 종료하려면 'q': \")\n",
+        "    if user_input.lower() == 'q':\n",
+        "        break\n",
+        "    if user_input.replace('.', '', 1).isdigit():\n",
+        "        pH = float(user_input)\n",
+        "        if 0 <= pH <= 14:\n",
+        "            check_solubility(substances, pH)\n",
+        "        else:\n",
+        "            print(\"pH는 0에서 14 사이여야 합니다.\")\n",
+        "    else:\n",
+        "        print(\"숫자 형태로 입력해 주세요.\")"
+      ]
+    }
+  ]
+}
